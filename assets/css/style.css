@@ -37,6 +37,10 @@ body.wrong {
     box-shadow: 0 0 10px 2px;
 }
 
+.p {
+ text-align: center;
+}
+
 .btn-grid {
     display: grid;
     justify-content: left;
