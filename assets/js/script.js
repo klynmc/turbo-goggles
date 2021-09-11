@@ -4,6 +4,11 @@ const questionContainerEl = document.getElementById("question-container")
 const questionEl = document.getElementById("question")
 const answerButtonsEl = document.getElementById("answer-buttons")
 const pEl = document.getElementById("p")
+const titleEl = document.getElementById("title")
+const startTimer = document.getElementById("start-btn")
+
+//var counter = 0;
+//var timeLeft = 60;
 
 let shuffledQuestions, currentQuestionIndex
 
@@ -13,13 +18,32 @@ nextButton.addEventListener("click", () => {
     setNextQuestion()
 })
 
+//function setup() {
+   //noCanvas();
+
+    //var timer = select('#timer-sec');
+    //timer.html('timeLeft - counter');
+
+    //function timeIt() {
+        //counter++;
+        //timer.html('timeLeft - counter');
+    //}
+
+    //setInterval(timeIt, 1000);
+
+//}
+
+//startTimer.addEventListener("click", setup)
+
 function startGame() {
+    titleEl.classList.add("hide")
     pEl.classList.add("hide")
     startButton.classList.add("hide")
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerEl.classList.remove("hide")
     setNextQuestion()
+    
 }
 
 function setNextQuestion() {
@@ -82,8 +106,8 @@ const questions = [
     {
         question: "What does HTML stand for?",
         answers: [
-            { text: "Hyper Text Markup Language", correct: true},
             { text: "High Text Maker Language", correct: false},
+            { text: "Hyper Text Markup Language", correct: true},
             { text: "Hopping Talking Music Language", correct: false},
             { text: "Hyper Text Message Language", correct: false}
         ]
@@ -100,10 +124,19 @@ const questions = [
     {
         question: "How do you make a comment in CSS?",
         answers: [
-            { text: "/**/", correct: true},
-            { text: "<!-->", correct: false},
             { text: "//", correct: false},
+            { text: "<!-->", correct: false},
+            { text: "/**/", correct: true},
             { text: "(#)", correct: false}
+        ]
+    },
+    {
+        question: "What does CSS stand for?",
+        answers: [
+            { text: "Cascading Style Sheet", correct: true},
+            { text: "Crazy Silly Sheet", correct: false},
+            { text: "Computer Styling Sheet", correct: false},
+            { text: "Cool Style Sheet", correct: false}
         ]
     }
 ]
