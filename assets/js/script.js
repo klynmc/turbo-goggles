@@ -6,8 +6,11 @@ const answerButtonsEl = document.getElementById("answer-buttons")
 
 let shuffledQuestions, currentQuestionIndex
 
-
 startButton.addEventListener("click", startGame)
+nextButton.addEventListener("click", () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
 
 function startGame() {
     startButton.classList.add("hide")
@@ -51,9 +54,15 @@ function selectAnswer(e) {
     Array.from(answerButtonsEl.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
+    if (shuffledQuestions.length > currentQuestionIndex + 1){
+        nextButton.classList.remove("hide")
+    } else {
+        startButton.innerText = "Restart"
+        startButton.classList.remove("hide")
+    }
 }
 
-function setStatus(element, correct) {
+function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add("correct")
@@ -63,8 +72,8 @@ function setStatus(element, correct) {
 }
 
 function clearStatusClass(element) {
-    element.classList.add("correct")
-    element.classList.add("correct")
+    element.classList.remove("correct")
+    element.classList.remove("wrong")
 }
 
 const questions = [
@@ -75,6 +84,24 @@ const questions = [
             { text: "High Text Maker Language", correct: false},
             { text: "Hopping Talking Music Language", correct: false},
             { text: "Hyper Text Message Language", correct: false}
+        ]
+    },
+    {
+        question: "How do you make a comment in HTML?",
+        answers: [
+            { text: "<!-->", correct: true},
+            { text: "/**/", correct: false},
+            { text: "//", correct: false},
+            { text: "(#)", correct: false}
+        ]
+    },
+    {
+        question: "How do you make a comment in CSS?",
+        answers: [
+            { text: "/**/", correct: true},
+            { text: "<!-->", correct: false},
+            { text: "//", correct: false},
+            { text: "(#)", correct: false}
         ]
     }
 ]
