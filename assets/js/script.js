@@ -91,7 +91,7 @@ function clearStatusClass(element) {
 };
 
 function done() {
-
+    
 }
 
 const questions = [
