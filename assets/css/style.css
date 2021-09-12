@@ -54,7 +54,7 @@ body.wrong {
     justify-content: center;
 }
 
-.timer {
+.time {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -67,7 +67,7 @@ body.wrong {
     color: white;
 }
 
-.timer-sec {
+.timer {
     font-weight: bold;
 }
 

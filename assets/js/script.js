@@ -5,10 +5,6 @@ const questionEl = document.getElementById("question")
 const answerButtonsEl = document.getElementById("answer-buttons")
 const pEl = document.getElementById("p")
 const titleEl = document.getElementById("title")
-const startTimer = document.getElementById("start-btn")
-
-//var counter = 0;
-//var timeLeft = 60;
 
 let shuffledQuestions, currentQuestionIndex
 
@@ -18,24 +14,15 @@ nextButton.addEventListener("click", () => {
     setNextQuestion()
 })
 
-//function setup() {
-   //noCanvas();
-
-    //var timer = select('#timer-sec');
-    //timer.html('timeLeft - counter');
-
-    //function timeIt() {
-        //counter++;
-        //timer.html('timeLeft - counter');
-    //}
-
-    //setInterval(timeIt, 1000);
-
-//}
-
-//startTimer.addEventListener("click", setup)
-
 function startGame() {
+    
+    var seconds = document.getElementById("timer").textContent;
+    var countdown = setInterval(function() {
+    seconds--;
+    document.getElementById("timer").textContent = seconds;
+    if (seconds <= 0) clearInterval(countdown);
+    }, 1000);
+
     titleEl.classList.add("hide")
     pEl.classList.add("hide")
     startButton.classList.add("hide")
@@ -137,6 +124,13 @@ const questions = [
             { text: "Crazy Silly Sheet", correct: false},
             { text: "Computer Styling Sheet", correct: false},
             { text: "Cool Style Sheet", correct: false}
+        ]
+    },
+    {
+        question: "True or False: Bootstrap is a JavaScript framework.",
+        answers: [
+            { text: "True, it is a JavaScript framework", correct: false},
+            { text: "False, it is a CSS framework", correct: true}
         ]
     }
 ]
