@@ -107,7 +107,7 @@ body.wrong {
     color: black;
 }
 
-.start-btn, .next-btn {
+.start-btn, .next-btn, .done-btn {
     font-size: 20px;
     font-weight: bold;
     padding: 5px 10px;

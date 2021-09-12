@@ -1,28 +1,30 @@
-const startButton = document.getElementById("start-btn")
-const nextButton = document.getElementById("next-btn")
-const questionContainerEl = document.getElementById("question-container")
-const questionEl = document.getElementById("question")
-const answerButtonsEl = document.getElementById("answer-buttons")
-const pEl = document.getElementById("p")
-const titleEl = document.getElementById("title")
+const startButton = document.getElementById("start-btn");
+const nextButton = document.getElementById("next-btn");
+const doneButton = document.getElementById("done-btn");
+const questionContainerEl = document.getElementById("question-container");
+const questionEl = document.getElementById("question");
+const answerButtonsEl = document.getElementById("answer-buttons");
+const pEl = document.getElementById("p");
+const titleEl = document.getElementById("title");
+
+var seconds = document.getElementById("timer").textContent;
 
 let shuffledQuestions, currentQuestionIndex
 
-startButton.addEventListener("click", startGame)
+startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++
     setNextQuestion()
-})
+});
+doneButton.addEventListener("click", done);
 
 function startGame() {
-    
-    var seconds = document.getElementById("timer").textContent;
+
     var countdown = setInterval(function() {
     seconds--;
     document.getElementById("timer").textContent = seconds;
     if (seconds <= 0) clearInterval(countdown);
     }, 1000);
-
     titleEl.classList.add("hide")
     pEl.classList.add("hide")
     startButton.classList.add("hide")
@@ -31,12 +33,12 @@ function startGame() {
     questionContainerEl.classList.remove("hide")
     setNextQuestion()
     
-}
+};
 
 function setNextQuestion() {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
-}
+};
 
 function showQuestion(question) {
     questionEl.innerText = question.question
@@ -50,7 +52,7 @@ function showQuestion(question) {
         button.addEventListener("click", selectAnswer)
         answerButtonsEl.appendChild(button)
     })
-}
+};
 
 function resetState() {
     nextButton.classList.add("hide")
@@ -58,7 +60,7 @@ function resetState() {
         answerButtonsEl.removeChild
         (answerButtonsEl.firstChild)
     }
-}
+};
 
 function selectAnswer(e) {
     const selectedButton = e.target
@@ -70,10 +72,9 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1){
         nextButton.classList.remove("hide")
     } else {
-        startButton.innerText = "Restart"
-        startButton.classList.remove("hide")
+        doneButton.classList.remove("hide")
     }
-}
+};
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -82,11 +83,15 @@ function setStatusClass(element, correct) {
     } else {
         element.classList.add("wrong")
     }
-}
+};
 
 function clearStatusClass(element) {
     element.classList.remove("correct")
     element.classList.remove("wrong")
+};
+
+function done() {
+
 }
 
 const questions = [
@@ -133,7 +138,8 @@ const questions = [
             { text: "False, it is a CSS framework", correct: true}
         ]
     }
-]
+];
 
 //SOURCES
 //https://youtu.be/riDzcEQbX6k
+//https://tonnygaric.com/blog/create-a-seconds-countdown-in-6-lines-of-javascript
